@@ -10,6 +10,23 @@ Thanks to this tutorial [Creating Custom WordPress Administration Pages](https:/
 
 * Tested on WP 4.9.7
 
+* Your flux must be a JSON, and formatted like this below 
+```
+{
+    "whateveryouwant": "whatever"
+    "items": [
+    {
+        "title": "Title",
+        "description": "Your content (html is ok)",
+        "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+    }
+}
+```
+For now, the category of imported posts is the default one.<br/>
+The author is ID 1.<br/>
+Post status automatically to 'publish'.
+
+
 I do not know if it will work on previous or higher versions
 
 ### Installing
