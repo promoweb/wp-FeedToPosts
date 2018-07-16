@@ -22,10 +22,6 @@ Thanks to this tutorial [Creating Custom WordPress Administration Pages](https:/
     }
 }
 ```
-For now, the category of imported posts is the default one.<br/>
-The author is ID 1.<br/>
-Post status automatically to 'publish'.
-
 
 I do not know if it will work on previous or higher versions
 
