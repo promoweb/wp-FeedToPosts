@@ -41,9 +41,16 @@ class Serializer
         }
 
         // If the above are valid, sanitize and save the option.
-        if (null !== wp_unslash($_POST['flux'])) {
-            $value = sanitize_text_field($_POST['flux']);
-            update_option('data', $value);
+        if (null !== wp_unslash($_POST['flux']) && null !== wp_unslash($_POST['user']) && null !== wp_unslash($_POST['status']) && null !== wp_unslash($_POST['category'])) {
+            $flux = sanitize_text_field($_POST['flux']);
+            $user = sanitize_text_field($_POST['user']);
+            $status = sanitize_text_field($_POST['status']);
+            $category = sanitize_text_field($_POST['category']);
+
+            update_option('flux', $flux);
+            update_option('user', $user);
+            update_option('status', $status);
+            update_option('category', $category);
         }
 
         $this->redirect();
@@ -62,14 +69,21 @@ class Serializer
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
-        if (! isset($_POST['custom-flux'])) { // Input var okay.
+        if (! isset($_POST['custom-flux']) && ! isset($_POST['user']) && ! isset($_POST['status']) && ! isset($_POST['category'])) { // Input var okay.
             return false;
         }
 
-        $field  = wp_unslash($_POST['custom-flux']);
+        $fields  = [
+            wp_unslash($_POST['custom-flux']),
+            wp_unslash($_POST['user']),
+            wp_unslash($_POST['status']),
+            wp_unslash($_POST['category']),
+        ];
         $action = 'save-flux';
-
-        return wp_verify_nonce($field, $action);
+        foreach ($fields as $field) {
+            return wp_verify_nonce($field, $action);
+        }
+        return $this;
     }
 
     /**
