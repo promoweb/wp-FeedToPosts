@@ -1,6 +1,6 @@
 # JSON flux wp-posts importer
 
-Thanks to this tutorial [Creating Custom WordPress Administration Pages](https://code.tutsplus.com/tutorials/creating-custom-admin-pages-in-wordpress-1--cms-26829), which helped me a lot for the creation of this plugin
+Thanks to this tutorial [Creating Custom WordPress Administration Pages](https://code.tutsplus.com/tutorials/creating-custom-admin-pages-in-wordpress-1--cms-26829) and to [Easy WordPress Admin Notifications](https://github.com/JolekPress/Easy-WordPress-Admin-Notifications), which helped me a lot for the creation of this plugin
 
 ## Getting Started
 

@@ -40,6 +40,9 @@ function custom_admin_settings()
     $plugin = new Submenu(new Submenu_Page($deserializer));
     $plugin->init();
 
-    $public = new Flux_Parser($serializer, $deserializer);
+    $notices = new JP_Easy_Admin_Notices();
+    $notices->init();
+
+    $public = new Flux_Parser($serializer, $deserializer, $notices);
     $public->postFromFlux();
 }

@@ -52,7 +52,6 @@ class Serializer
             update_option('status', $status);
             update_option('category', $category);
         }
-
         $this->redirect();
     }
 
@@ -83,7 +82,6 @@ class Serializer
         foreach ($fields as $field) {
             return wp_verify_nonce($field, $action);
         }
-        return $this;
     }
 
     /**
