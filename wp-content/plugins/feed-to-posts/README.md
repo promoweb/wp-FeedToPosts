@@ -1,4 +1,4 @@
-# JSON flux wp-posts importer
+# JSON feed wp-posts importer
 
 Thanks to this tutorial [Creating Custom WordPress Administration Pages](https://code.tutsplus.com/tutorials/creating-custom-admin-pages-in-wordpress-1--cms-26829) and to [Easy WordPress Admin Notifications](https://github.com/JolekPress/Easy-WordPress-Admin-Notifications), which helped me a lot for the creation of this plugin
 
@@ -10,7 +10,7 @@ Thanks to this tutorial [Creating Custom WordPress Administration Pages](https:/
 
 * Tested on WP 4.9.7
 
-* Your flux must be a JSON, and formatted like this below 
+* Your feed must be a JSON, and formatted like this below 
 ```
 {
    "items": [
@@ -37,11 +37,11 @@ I do not know if it will work on previous or higher versions
 * Clone or download the repository, and put files into **/wp-content/plugins/**
 
 ```
-https://github.com/natinho68/wp-fluxToPosts.git
+https://github.com/natinho68/wp-feedToPosts.git
 ```
 
 * Activate the plugin
-* Go to the Flux to posts page in the admin menu
+* Go to the feed to posts page in the admin menu
 * Put a feed and click on "Generate Posts"
 * Your posts have been imported
 
