@@ -13,13 +13,18 @@ Thanks to this tutorial [Creating Custom WordPress Administration Pages](https:/
 * Your flux must be a JSON, and formatted like this below 
 ```
 {
-    "whateveryouwant": "whatever"
-    "items": [
-    {
-        "title": "Title",
-        "description": "Your content (html is ok)",
-        "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
-    }
+   "items": [
+      {
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "description": "Your content (html is ok)1",
+         "title": "Title1"
+      },
+      {
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "description": "Your content (html is ok)2",
+         "title": "Title2"
+      }
+   ]
 }
 ```
 

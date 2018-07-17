@@ -3,19 +3,30 @@
     <form method="post" action="<?php echo esc_html(admin_url('admin-post.php')); ?>">
         <div id="container">
             <h2>Flux</h2>
+            <div class="intro">
             <p>This plugin allows you to generate posts through a JSON feed.
                 Note that the JSON stream must have the same format as below.</p>
-            <code>
-            {
-                "whateveryouwant": "whatever"
-                "items": [
-                {
-                    "title": "Title",
-                    "description": "Your content (html is ok)",
-                    "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
-                }
-            }
-            </code>
+            </div>
+            <div class="code">
+                <code>
+                    <pre>
+{
+   "items": [
+      {
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "description": "Your content (html is ok)1",
+         "title": "Title1"
+      },
+      {
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "description": "Your content (html is ok)2",
+         "title": "Title2"
+      }
+   ]
+}
+                        </pre>
+                </code>
+            </div>
             <div class="options">
                 <p>
                     <label>What flux would you like to generate as wp posts?</label>
