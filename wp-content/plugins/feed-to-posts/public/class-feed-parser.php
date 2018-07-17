@@ -48,6 +48,10 @@ class Feed_Parser
                 $postIt = [];
                 // parse posts items
                 foreach ($json['items'] as $item) {
+                    if (!array_key_exists('title', $item) || !array_key_exists('pubdate', $item) || !array_key_exists('description', $item)) {
+                        jp_notices_add_error('Invalid JSON');
+                        return false;
+                    }
                     // convert date D-d-M H:i:s O to Y-m-d H:i:s
                     $dateFeed = $item['pubdate'];
                     $convertDate = date("Y-m-d H:i:s", strtotime($dateFeed));
@@ -58,6 +62,7 @@ class Feed_Parser
                     $postIt['post_author'] = intval($this->deserializer->get_value('user'));
                     $postIt['post_date_gmt'] = $convertDate;
                     $postIt['post_category'] = [intval($this->deserializer->get_value('category'))];
+
                     if (isset($_POST['submit'])) {
                         if (post_exists($item['title'])) {
                             jp_notices_add_error('Posts already exists (Empty the trash if already delete it) !');
