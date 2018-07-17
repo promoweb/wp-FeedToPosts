@@ -78,7 +78,7 @@
     <div class="last-import">
         <?php
 
-        $args = ['numberposts' => 5, 'order' => 'ASC'];
+        $args = ['numberposts' => 5, 'order' => 'DESC'];
         $recent_posts = wp_get_recent_posts($args);
 
         if (!empty($recent_posts)) {
