@@ -82,7 +82,7 @@
         $recent_posts = wp_get_recent_posts($args);
 
         if (!empty($recent_posts)) {
-            echo "<h2>Last posts imported</h2>";
+            echo "<h2>Last posts</h2>";
             foreach ($recent_posts as $recent_post) {
                 $link = get_permalink($recent_post["ID"]);
                 $title = $recent_post['post_title'];
@@ -97,7 +97,7 @@
                 echo "<p><a href='$link' >" . $title . "</a> at " . $date . " by <a href='$authorUrl'>" . $author . "</a> with " . $recent_post['post_status'] . " status</p>";
             }
         } else {
-            echo '<p>Nothing to import</p>';
+            echo '<p>No posts</p>';
         }
         ?>
     </div>
