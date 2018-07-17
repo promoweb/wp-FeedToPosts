@@ -6,7 +6,7 @@ Description: Create posts automatically from JSON flux
 Version: 0.1
 Author: Nathan MEYER
 Author URI: https://github.com/natinho68
-License: MIT
+License: GNU GENERAL PUBLIC LICENSE v2
 */
 
 
