@@ -1,7 +1,7 @@
 <?php
 /*
-Plugin Name: Flux to posts
-Description: Create posts automatically from JSON flux
+Plugin Name: Feed to posts
+Description: Create posts automatically from JSON feed
 Version: 0.1
 Author: Nathan MEYER
 Author URI: https://github.com/natinho68
@@ -21,7 +21,7 @@ foreach (glob(plugin_dir_path(__FILE__) . 'admin/*.php') as $file) {
 
 // Include the shared dependency.
 include_once(plugin_dir_path(__FILE__) . 'shared/class-deserializer.php');
-include_once(plugin_dir_path(__FILE__) . 'public/class-flux-parser.php');
+include_once(plugin_dir_path(__FILE__) . 'public/class-feed-parser.php');
 include_once(ABSPATH . 'wp-admin/includes/post.php');
 
 add_action('plugins_loaded', 'custom_admin_settings');
@@ -43,6 +43,6 @@ function custom_admin_settings()
     $notices = new JP_Easy_Admin_Notices();
     $notices->init();
 
-    $public = new Flux_Parser($serializer, $deserializer, $notices);
-    $public->postFromFlux();
+    $public = new Feed_Parser($serializer, $deserializer, $notices);
+    $public->postFromFeed();
 }

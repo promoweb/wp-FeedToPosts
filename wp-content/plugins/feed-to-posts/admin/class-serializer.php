@@ -41,13 +41,13 @@ class Serializer
         }
 
         // If the above are valid, sanitize and save the option.
-        if (null !== wp_unslash($_POST['flux']) && null !== wp_unslash($_POST['user']) && null !== wp_unslash($_POST['status']) && null !== wp_unslash($_POST['category'])) {
-            $flux = sanitize_text_field($_POST['flux']);
+        if (null !== wp_unslash($_POST['Feed']) && null !== wp_unslash($_POST['user']) && null !== wp_unslash($_POST['status']) && null !== wp_unslash($_POST['category'])) {
+            $Feed = sanitize_text_field($_POST['Feed']);
             $user = sanitize_text_field($_POST['user']);
             $status = sanitize_text_field($_POST['status']);
             $category = sanitize_text_field($_POST['category']);
 
-            update_option('flux', $flux);
+            update_option('Feed', $Feed);
             update_option('user', $user);
             update_option('status', $status);
             update_option('category', $category);
@@ -68,17 +68,17 @@ class Serializer
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
-        if (! isset($_POST['custom-flux']) && ! isset($_POST['user']) && ! isset($_POST['status']) && ! isset($_POST['category'])) { // Input var okay.
+        if (! isset($_POST['custom-Feed']) && ! isset($_POST['user']) && ! isset($_POST['status']) && ! isset($_POST['category'])) { // Input var okay.
             return false;
         }
 
         $fields  = [
-            wp_unslash($_POST['custom-flux']),
+            wp_unslash($_POST['custom-Feed']),
             wp_unslash($_POST['user']),
             wp_unslash($_POST['status']),
             wp_unslash($_POST['category']),
         ];
-        $action = 'save-flux';
+        $action = 'save-Feed';
         foreach ($fields as $field) {
             return wp_verify_nonce($field, $action);
         }

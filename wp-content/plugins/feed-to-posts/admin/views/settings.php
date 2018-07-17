@@ -2,7 +2,7 @@
     <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
     <form method="post" action="<?php echo esc_html(admin_url('admin-post.php')); ?>">
         <div id="container">
-            <h2>Flux</h2>
+            <h2>Feed</h2>
             <div class="intro">
             <p>This plugin allows you to generate posts through a JSON feed.
                 Note that the JSON stream must have the same format as below and the datetime must respect RFC822.</p>
@@ -29,10 +29,10 @@
             </div>
             <div class="options">
                 <p>
-                    <label>What flux would you like to generate as wp posts?</label>
+                    <label>What feed would you like to generate as wp posts?</label>
                     <br/>
-                    <input type="text" name="flux" style="width:100%;"
-                           value="<?php echo esc_attr($this->deserializer->get_value('flux')); ?>"
+                    <input type="text" name="Feed" style="width:100%;"
+                           value="<?php echo esc_attr($this->deserializer->get_value('Feed')); ?>"
                     />
                 </p>
                 <p>
@@ -70,7 +70,7 @@
                 </p>
             </div>
             <?php
-            wp_nonce_field('save-flux', 'custom-flux');
+            wp_nonce_field('save-Feed', 'custom-Feed');
             submit_button('Generate posts');
             ?>
     </form>
