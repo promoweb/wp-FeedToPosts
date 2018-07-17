@@ -5,7 +5,7 @@
             <h2>Flux</h2>
             <div class="intro">
             <p>This plugin allows you to generate posts through a JSON feed.
-                Note that the JSON stream must have the same format as below.</p>
+                Note that the JSON stream must have the same format as below and the datetime must respect RFC822.</p>
             </div>
             <div class="code">
                 <code>
