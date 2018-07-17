@@ -15,12 +15,12 @@ Thanks to this tutorial [Creating Custom WordPress Administration Pages](https:/
 {
    "items": [
       {
-         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0000",
          "description": "Your content (html is ok)1",
          "title": "Title1"
       },
       {
-         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0000",
          "description": "Your content (html is ok)2",
          "title": "Title2"
       }
