@@ -13,12 +13,12 @@
 {
    "items": [
       {
-         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0000",
          "description": "Your content (html is ok)1",
          "title": "Title1"
       },
       {
-         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0200",
+         "pubdate": "Thu, 21 Dec 2000 16:01:07 +0000",
          "description": "Your content (html is ok)2",
          "title": "Title2"
       }
@@ -78,7 +78,7 @@
     <div class="last-import">
         <?php
 
-        $args = ['numberposts' => 5];
+        $args = ['numberposts' => 5, 'order' => 'ASC'];
         $recent_posts = wp_get_recent_posts($args);
 
         if (!empty($recent_posts)) {
