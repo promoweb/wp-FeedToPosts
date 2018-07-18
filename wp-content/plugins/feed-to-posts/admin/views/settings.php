@@ -53,7 +53,7 @@
                         <option value="future">Future</option>
                         <option value="draft">Draft</option>
                         <option value="pending">Pending</option>
-                        <option value="rrivate">Private</option>
+                        <option value="private">Private</option>
                         <option value="trash">Trash</option>
                     </select>
                 </p>
