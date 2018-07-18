@@ -41,13 +41,13 @@ class FeedToPosts_Controller
      */
     public function FeedToPosts_Feed()
     {
-        if ($this->serializer->hasValidNonce()) {
-            if (empty($this->deserializer->getValue('feed'))) {
+        if ($this->serializer->FeedToPosts_hasValidNonce()) {
+            if (empty($this->deserializer->FeedToPosts_getValue('feed'))) {
                 FeedToPosts_notices_addError('Please provide a JSON feed');
                 return false;
             } else {
                 // get feed and json decode
-                $json = json_decode(file_get_contents($this->deserializer->getValue('feed')), true);
+                $json = json_decode(file_get_contents($this->deserializer->FeedToPosts_getValue('feed')), true);
                 // init post array
                 $postIt = [];
                 // parse posts items
@@ -62,10 +62,10 @@ class FeedToPosts_Controller
 
                     $postIt['post_title'] = $item['title'];
                     $postIt['post_content'] = $item['description'];
-                    $postIt['post_status'] = $this->deserializer->getValue('status');
-                    $postIt['post_author'] = intval($this->deserializer->getValue('user'));
+                    $postIt['post_status'] = $this->deserializer->FeedToPosts_getValue('status');
+                    $postIt['post_author'] = intval($this->deserializer->FeedToPosts_getValue('user'));
                     $postIt['post_date_gmt'] = $convertDate;
-                    $postIt['post_category'] = [intval($this->deserializer->getValue('category'))];
+                    $postIt['post_category'] = [intval($this->deserializer->FeedToPosts_getValue('category'))];
 
                     if (isset($_POST['submit'])) {
                         if (post_exists($item['title'])) {

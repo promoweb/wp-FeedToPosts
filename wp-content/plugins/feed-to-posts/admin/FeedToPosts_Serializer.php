@@ -5,9 +5,9 @@
  */
 class FeedToPosts_Serializer
 {
-    public function init()
+    public function FeedToPosts_init()
     {
-        add_action('admin_post', array( $this, 'save' ));
+        add_action('admin_post', array( $this, 'FeedToPosts_save' ));
     }
 
     /**
@@ -15,11 +15,11 @@ class FeedToPosts_Serializer
      * permission to save the value from the options page and saves the
      * option to the database.
      */
-    public function save()
+    public function FeedToPosts_save()
     {
 
         // First, validate the nonce and verify the user as permission to save.
-        if (! ($this->hasValidNonce() && current_user_can('manage_options'))) {
+        if (! ($this->FeedToPosts_hasValidNonce() && current_user_can('manage_options'))) {
             echo 'You can\'t access this page';
         }
 
@@ -35,7 +35,7 @@ class FeedToPosts_Serializer
             update_option('status', $status);
             update_option('category', $category);
         }
-        $this->redirect();
+        $this->FeedToPosts_redirect();
     }
 
     /**
@@ -46,7 +46,7 @@ class FeedToPosts_Serializer
      *
      * @return boolean False if the field isn't set or the nonce value is invalid otherwise, true.
      */
-    public function hasValidNonce()
+    public function FeedToPosts_hasValidNonce()
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
@@ -70,7 +70,7 @@ class FeedToPosts_Serializer
      * Redirect to the page from which we came
      * @access private
      */
-    public function redirect()
+    public function FeedToPosts_redirect()
     {
         // Input var okay.
         if (! isset($_POST['_wp_http_referer'])) {

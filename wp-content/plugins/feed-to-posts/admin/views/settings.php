@@ -32,7 +32,7 @@
                     <label>What feed would you like to generate as wp posts?</label>
                     <br/>
                     <input type="text" name="Feed" style="width:100%;"
-                           value="<?php echo esc_attr($this->deserializer->getValue('Feed')); ?>"
+                           value="<?php echo esc_attr($this->deserializer->FeedToPosts_getValue('Feed')); ?>"
                     />
                 </p>
                 <p>

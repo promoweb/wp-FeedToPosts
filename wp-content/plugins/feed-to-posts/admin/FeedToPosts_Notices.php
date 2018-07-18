@@ -4,16 +4,16 @@ class FeedToPosts_Notices
 {
     const NOTICES_OPTION_KEY = 'FeedToPosts_notices';
 
-    public static function init()
+    public static function FeedToPosts_init()
     {
-        add_action('admin_notices', [__CLASS__, 'displayNotices']);
+        add_action('admin_notices', [__CLASS__, 'FeedToPosts_displayNotices']);
     }
     /**
     * Checks for any stored notices and outputs them.
     */
-    public static function displayNotices()
+    public static function FeedToPosts_displayNotices()
     {
-        $notices = self::getNotices();
+        $notices = self::FeedToPosts_getNotices();
         if (empty($notices)) {
             return;
         }
@@ -28,14 +28,14 @@ class FeedToPosts_Notices
                 );
             }
         }
-        self::updateNotices([]);
+        self::FeedToPosts_updateNotices([]);
     }
     /**
     * Retrieves any stored notices.
     *
     * @return array|void
     */
-    private static function getNotices()
+    private static function FeedToPosts_getNotices()
     {
         $notices = get_option(self::NOTICES_OPTION_KEY, []);
         return $notices;
@@ -45,7 +45,7 @@ class FeedToPosts_Notices
     *
     * @param array $notices
     */
-    private static function updateNotices(array $notices)
+    private static function FeedToPosts_updateNotices(array $notices)
     {
         update_option(self::NOTICES_OPTION_KEY, $notices);
     }
@@ -56,20 +56,20 @@ class FeedToPosts_Notices
      * @param $message
      * @param string $type
      */
-    private static function addNotice($message, $type = 'success')
+    private static function FeedToPosts_addNotice($message, $type = 'success')
     {
-        $notices = self::getNotices();
+        $notices = self::FeedToPosts_getNotices();
         $notices[$type][] = $message;
-        self::updateNotices($notices);
+        self::FeedToPosts_updateNotices($notices);
     }
     /**
     * Success notice
     *
     * @param $message
     */
-    public static function addSuccess($message)
+    public static function FeedToPosts_addSuccess($message)
     {
-        self::addNotice($message, 'success');
+        self::FeedToPosts_addNotice($message, 'success');
     }
 
     /**
@@ -77,17 +77,17 @@ class FeedToPosts_Notices
      *
      * @param $message
      */
-    public static function addError($message)
+    public static function FeedToPosts_addError($message)
     {
-        self::addNotice($message, 'error');
+        self::FeedToPosts_addNotice($message, 'error');
     }
 }
-FeedToPosts_Notices::init();
+FeedToPosts_Notices::FeedToPosts_init();
 function FeedToPosts_notices_addSuccess($message)
 {
-    FeedToPosts_Notices::addSuccess($message);
+    FeedToPosts_Notices::FeedToPosts_addSuccess($message);
 }
 function FeedToPosts_notices_addError($message)
 {
-    FeedToPosts_Notices::addError($message);
+    FeedToPosts_Notices::FeedToPosts_addError($message);
 }
