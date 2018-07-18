@@ -70,8 +70,8 @@
                 </p>
             </div>
             <?php
-            wp_nonce_field('save-Feed', 'custom-Feed');
-            submit_button('Generate posts');
+            wp_nonce_field('FeedToPosts_saveFeed', 'FeedToPosts_nonce');
+            submit_button('Generate posts', 'primary', 'FeedToPosts_submit');
             ?>
     </form>
 

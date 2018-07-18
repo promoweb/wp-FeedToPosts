@@ -67,7 +67,7 @@ class FeedToPosts_Controller
                     $postIt['post_date_gmt'] = $convertDate;
                     $postIt['post_category'] = [intval($this->deserializer->FeedToPosts_getValue('category'))];
 
-                    if (isset($_POST['submit'])) {
+                    if (isset($_POST['FeedToPosts_submit'])) {
                         if (post_exists($item['title'])) {
                             FeedToPosts_notices_addError('Posts already exists (Empty the trash if already delete it) !');
                             return false;

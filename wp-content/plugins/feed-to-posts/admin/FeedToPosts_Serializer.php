@@ -50,17 +50,17 @@ class FeedToPosts_Serializer
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
-        if (! isset($_POST['custom-Feed']) && ! isset($_POST['user']) && ! isset($_POST['status']) && ! isset($_POST['category'])) { // Input var okay.
+        if (! isset($_POST['FeedToPosts_nonce']) && ! isset($_POST['user']) && ! isset($_POST['status']) && ! isset($_POST['category'])) { // Input var okay.
             return false;
         }
 
         $fields  = [
-            wp_unslash($_POST['custom-Feed']),
+            wp_unslash($_POST['FeedToPosts_nonce']),
             wp_unslash($_POST['user']),
             wp_unslash($_POST['status']),
             wp_unslash($_POST['category']),
         ];
-        $action = 'save-Feed';
+        $action = 'FeedToPosts_saveFeed';
         foreach ($fields as $field) {
             return wp_verify_nonce($field, $action);
         }
