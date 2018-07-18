@@ -31,13 +31,16 @@
                 <p>
                     <label>What feed would you like to generate as wp posts?</label>
                     <br/>
-                    <input type="text" name="Feed" style="width:100%;"
-                           value="<?php echo esc_attr($this->deserializer->FeedToPosts_getValue('Feed')); ?>"
+                    <input type="text" name="FluxToPosts_feed" style="width:100%;"
+                           value="<?php
+                            $values = $this->deserializer->FeedToPosts_getValue('FeedToPosts_option_key');
+                            echo esc_attr($values['feed']);
+                            ?>"
                     />
                 </p>
                 <p>
                     <label>Author</label>
-                    <select id="user" name="user">
+                    <select id="FluxToPosts_user" name="FluxToPosts_user">
                         <?php
 
                         foreach (get_users() as $user) {
@@ -59,7 +62,7 @@
                 </p>
                 <p>
                     <label>Category</label>
-                    <select id="category" name="category">
+                    <select id="FluxToPosts_category" name="FluxToPosts_category">
                         <?php
 
                         foreach (get_categories(array('hide_empty' => 0)) as $category) {

@@ -41,13 +41,14 @@ class FeedToPosts_Controller
      */
     public function FeedToPosts_Feed()
     {
-        if ($this->serializer->FeedToPosts_hasValidNonce()) {
-            if (empty($this->deserializer->FeedToPosts_getValue('feed'))) {
+        $values = $this->deserializer->FeedToPosts_getValue('FeedToPosts_option_key');
+        if ($_POST['FeedToPosts_submit']) {
+            if (empty($values['feed'])) {
                 FeedToPosts_notices_addError('Please provide a JSON feed');
                 return false;
             } else {
                 // get feed and json decode
-                $json = json_decode(file_get_contents($this->deserializer->FeedToPosts_getValue('feed')), true);
+                $json = json_decode(file_get_contents($values['feed']), true);
                 // init post array
                 $postIt = [];
                 // parse posts items
@@ -62,18 +63,16 @@ class FeedToPosts_Controller
 
                     $postIt['post_title'] = $item['title'];
                     $postIt['post_content'] = $item['description'];
-                    $postIt['post_status'] = $this->deserializer->FeedToPosts_getValue('status');
-                    $postIt['post_author'] = intval($this->deserializer->FeedToPosts_getValue('user'));
+                    $postIt['post_status'] = $values['status'];
+                    $postIt['post_author'] = intval($values['user']);
                     $postIt['post_date_gmt'] = $convertDate;
-                    $postIt['post_category'] = [intval($this->deserializer->FeedToPosts_getValue('category'))];
+                    $postIt['post_category'] = [intval($values['category'])];
 
-                    if (isset($_POST['FeedToPosts_submit'])) {
-                        if (post_exists($item['title'])) {
-                            FeedToPosts_notices_addError('Posts already exists (Empty the trash if already delete it) !');
-                            return false;
-                        } else {
-                            wp_insert_post($postIt);
-                        }
+                    if (post_exists($item['title'])) {
+                        FeedToPosts_notices_addError('Posts already exists (Empty the trash if already delete it) !');
+                        return false;
+                    } else {
+                        wp_insert_post($postIt);
                     }
                 }
             }

@@ -24,16 +24,15 @@ class FeedToPosts_Serializer
         }
 
         // If the above are valid, sanitize and save the option.
-        if (null !== wp_unslash($_POST['Feed']) && null !== wp_unslash($_POST['user']) && null !== wp_unslash($_POST['status']) && null !== wp_unslash($_POST['category'])) {
-            $Feed = sanitize_text_field($_POST['Feed']);
-            $user = sanitize_text_field($_POST['user']);
-            $status = sanitize_text_field($_POST['status']);
-            $category = sanitize_text_field($_POST['category']);
+        if (null !== wp_unslash($_POST['FluxToPosts_feed']) && null !== wp_unslash($_POST['FluxToPosts_user']) && null !== wp_unslash($_POST['FluxToPosts_status']) && null !== wp_unslash($_POST['FluxToPosts_category'])) {
+            $data = [
+            'feed' => sanitize_text_field($_POST['FluxToPosts_feed']),
+            'user' => sanitize_text_field($_POST['FluxToPosts_user']),
+            'status' => sanitize_text_field($_POST['FluxToPosts_status']),
+            'category' => sanitize_text_field($_POST['FluxToPosts_category'])
+            ];
 
-            update_option('Feed', $Feed);
-            update_option('user', $user);
-            update_option('status', $status);
-            update_option('category', $category);
+            update_option('FeedToPosts_option_key', $data);
         }
         $this->FeedToPosts_redirect();
     }
@@ -50,15 +49,15 @@ class FeedToPosts_Serializer
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
-        if (! isset($_POST['FeedToPosts_nonce']) && ! isset($_POST['user']) && ! isset($_POST['status']) && ! isset($_POST['category'])) { // Input var okay.
+        if (! isset($_POST['FeedToPosts_nonce']) && ! isset($_POST['FluxToPosts_user']) && ! isset($_POST['FluxToPosts_status']) && ! isset($_POST['FluxToPosts_category'])) { // Input var okay.
             return false;
         }
 
         $fields  = [
             wp_unslash($_POST['FeedToPosts_nonce']),
-            wp_unslash($_POST['user']),
-            wp_unslash($_POST['status']),
-            wp_unslash($_POST['category']),
+            wp_unslash($_POST['FluxToPosts_user']),
+            wp_unslash($_POST['FluxToPosts_status']),
+            wp_unslash($_POST['FluxToPosts_category']),
         ];
         $action = 'FeedToPosts_saveFeed';
         foreach ($fields as $field) {
