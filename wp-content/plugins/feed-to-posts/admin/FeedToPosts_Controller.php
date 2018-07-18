@@ -1,30 +1,32 @@
 <?php
 
 
-class Feed_Parser
+class FeedToPosts_Controller
 {
     /**
      * A reference to the class for retrieving our option values.
      *
      * @access private
-     * @var    Deserializer
+     * @var    FeedToPosts_Deserializer
      */
     private $deserializer;
 
     /**
-     * @var Serializer
+     * @var FeedToPosts_Serializer
      */
     private $serializer;
 
     /**
-     * @var JP_Easy_Admin_Notices
+     * @var FeedToPosts_Notices
      */
     private $notices;
 
+
     /**
-     * Initializes the class by setting a reference to the incoming deserializer.
-     *
-     * @param Deserializer $deserializer Retrieves a value from the database.
+     * FeedToPosts_Controller constructor.
+     * @param $serializer
+     * @param $deserializer
+     * @param $notices
      */
     public function __construct($serializer, $deserializer, $notices)
     {
@@ -33,23 +35,25 @@ class Feed_Parser
         $this->notices = $notices;
     }
 
-    public function postFromFeed()
+    /**
+     * Get data and post it
+     * @return bool
+     */
+    public function FeedToPosts_Feed()
     {
-        if ($this->serializer->has_valid_nonce()) {
-            if (empty($this->deserializer->get_value('feed'))) {
-                jp_notices_add_error('Please provide a JSON feed');
+        if ($this->serializer->hasValidNonce()) {
+            if (empty($this->deserializer->getValue('feed'))) {
+                FeedToPosts_notices_addError('Please provide a JSON feed');
                 return false;
             } else {
                 // get feed and json decode
-                $json = json_decode(file_get_contents($this->deserializer->get_value('feed')), true);
-
-
+                $json = json_decode(file_get_contents($this->deserializer->getValue('feed')), true);
                 // init post array
                 $postIt = [];
                 // parse posts items
                 foreach ($json['items'] as $item) {
                     if (!array_key_exists('title', $item) || !array_key_exists('pubdate', $item) || !array_key_exists('description', $item)) {
-                        jp_notices_add_error('Invalid JSON');
+                        FeedToPosts_notices_addError('Invalid JSON');
                         return false;
                     }
                     // convert date D-d-M H:i:s O to Y-m-d H:i:s
@@ -58,14 +62,14 @@ class Feed_Parser
 
                     $postIt['post_title'] = $item['title'];
                     $postIt['post_content'] = $item['description'];
-                    $postIt['post_status'] = $this->deserializer->get_value('status');
-                    $postIt['post_author'] = intval($this->deserializer->get_value('user'));
+                    $postIt['post_status'] = $this->deserializer->getValue('status');
+                    $postIt['post_author'] = intval($this->deserializer->getValue('user'));
                     $postIt['post_date_gmt'] = $convertDate;
-                    $postIt['post_category'] = [intval($this->deserializer->get_value('category'))];
+                    $postIt['post_category'] = [intval($this->deserializer->getValue('category'))];
 
                     if (isset($_POST['submit'])) {
                         if (post_exists($item['title'])) {
-                            jp_notices_add_error('Posts already exists (Empty the trash if already delete it) !');
+                            FeedToPosts_notices_addError('Posts already exists (Empty the trash if already delete it) !');
                             return false;
                         } else {
                             wp_insert_post($postIt);
@@ -73,7 +77,7 @@ class Feed_Parser
                     }
                 }
             }
-            jp_notices_add_success('Post generated');
+            FeedToPosts_notices_addSuccess('Post generated');
         }
     }
 }

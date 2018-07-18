@@ -2,7 +2,7 @@
 /*
 Plugin Name: Feed to posts
 Description: Create posts automatically from JSON feed
-Version: 0.1
+Version: 1.0
 Author: Nathan MEYER
 Author URI: https://github.com/natinho68
 License: GNU GENERAL PUBLIC LICENSE v2
@@ -20,29 +20,27 @@ foreach (glob(plugin_dir_path(__FILE__) . 'admin/*.php') as $file) {
 }
 
 // Include the shared dependency.
-include_once(plugin_dir_path(__FILE__) . 'shared/class-deserializer.php');
-include_once(plugin_dir_path(__FILE__) . 'public/class-feed-parser.php');
 include_once(ABSPATH . 'wp-admin/includes/post.php');
 
-add_action('plugins_loaded', 'custom_admin_settings');
+add_action('plugins_loaded', 'FeedToPosts_Settings');
 
 /**
  * Starts the plugin.
  *
  */
-function custom_admin_settings()
+function FeedToPosts_Settings()
 {
-    $serializer = new Serializer();
+    $serializer = new FeedToPosts_Serializer();
     $serializer->init();
 
-    $deserializer = new Deserializer();
+    $deserializer = new FeedToPosts_Deserializer();
 
-    $plugin = new Submenu(new Submenu_Page($deserializer));
+    $plugin = new FeedToPosts_Menu(new FeedToPosts_Page($deserializer));
     $plugin->init();
 
-    $notices = new JP_Easy_Admin_Notices();
+    $notices = new FeedToPosts_Notices();
     $notices->init();
 
-    $public = new Feed_Parser($serializer, $deserializer, $notices);
-    $public->postFromFeed();
+    $public = new FeedToPosts_Controller($serializer, $deserializer, $notices);
+    $public->FeedToPosts_Feed();
 }
