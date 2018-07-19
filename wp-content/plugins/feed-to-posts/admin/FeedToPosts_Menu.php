@@ -22,7 +22,7 @@ class FeedToPosts_Menu
     /**
      * add menu
      */
-    public function FeedToPosts_init()
+    public function FeedToPosts_menuInit()
     {
         add_action('admin_menu', array($this, 'FeedToPosts_addMenuPage' ));
     }

@@ -5,7 +5,7 @@
  */
 class FeedToPosts_Serializer
 {
-    public function FeedToPosts_init()
+    public function FeedToPosts_serializerInit()
     {
         add_action('admin_post', array( $this, 'FeedToPosts_save' ));
     }
@@ -52,20 +52,13 @@ class FeedToPosts_Serializer
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
-        if (! isset($_POST['FeedToPosts_nonce']) && ! isset($_POST['FluxToPosts_user']) && ! isset($_POST['FluxToPosts_status']) && ! isset($_POST['FluxToPosts_category'])) { // Input var okay.
+        if (! isset($_POST['FeedToPosts_nonce'])) { // Input var okay.
             return false;
         }
 
-        $fields  = [
-            wp_unslash($_POST['FeedToPosts_nonce']),
-            wp_unslash($_POST['FluxToPosts_user']),
-            wp_unslash($_POST['FluxToPosts_status']),
-            wp_unslash($_POST['FluxToPosts_category']),
-        ];
+        $field  =  wp_unslash($_POST['FeedToPosts_nonce']);
         $action = 'FeedToPosts_saveFeed';
-        foreach ($fields as $field) {
-            return wp_verify_nonce($field, $action);
-        }
+        return wp_verify_nonce($field, $action);
     }
 
     /**

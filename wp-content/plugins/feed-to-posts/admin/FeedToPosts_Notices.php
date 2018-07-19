@@ -4,7 +4,7 @@ class FeedToPosts_Notices
 {
     const NOTICES_OPTION_KEY = 'FeedToPosts_notices';
 
-    public static function FeedToPosts_init()
+    public static function FeedToPosts_noticesInit()
     {
         add_action('admin_notices', [__CLASS__, 'FeedToPosts_displayNotices']);
     }
@@ -82,7 +82,7 @@ class FeedToPosts_Notices
         self::FeedToPosts_addNotice($message, 'error');
     }
 }
-FeedToPosts_Notices::FeedToPosts_init();
+FeedToPosts_Notices::FeedToPosts_noticesInit();
 function FeedToPosts_notices_addSuccess($message)
 {
     FeedToPosts_Notices::FeedToPosts_addSuccess($message);
