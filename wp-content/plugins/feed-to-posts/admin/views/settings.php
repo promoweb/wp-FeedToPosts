@@ -51,7 +51,7 @@
                 </p>
                 <p>
                     <label>Post status</label>
-                    <select id="status" name="status">
+                    <select id="FluxToPosts_status" name="FluxToPosts_status">
                         <option value="publish">Publish</option>
                         <option value="future">Future</option>
                         <option value="draft">Draft</option>

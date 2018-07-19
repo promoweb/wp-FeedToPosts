@@ -32,7 +32,7 @@ class FeedToPosts_Serializer
             'category' => sanitize_text_field($_POST['FluxToPosts_category'])
             ];
 
-            update_option('FeedToPosts_option_key', $data);
+            update_option('FeedToPosts_option_key', $data, 'yes');
         }
         $this->FeedToPosts_redirect();
     }
@@ -67,7 +67,6 @@ class FeedToPosts_Serializer
 
     /**
      * Redirect to the page from which we came
-     * @access private
      */
     public function FeedToPosts_redirect()
     {
