@@ -34,7 +34,9 @@
                     <input type="text" name="FluxToPosts_feed" style="width:100%;"
                            value="<?php
                             $values = $this->deserializer->FeedToPosts_getValue('FeedToPosts_option_key');
-                            echo esc_attr($values['feed']);
+                            if (isset($values['feed'])) {
+                                echo esc_attr($values['feed']);
+                            }
                             ?>"
                     />
                 </p>

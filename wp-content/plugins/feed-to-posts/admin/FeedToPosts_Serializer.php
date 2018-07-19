@@ -24,16 +24,19 @@ class FeedToPosts_Serializer
         }
 
         // If the above are valid, sanitize and save the option.
-        if (null !== wp_unslash($_POST['FluxToPosts_feed']) && null !== wp_unslash($_POST['FluxToPosts_user']) && null !== wp_unslash($_POST['FluxToPosts_status']) && null !== wp_unslash($_POST['FluxToPosts_category'])) {
+        if (wp_unslash($_POST['FluxToPosts_feed']) !== null  &&  wp_unslash($_POST['FluxToPosts_user']) !== null  && wp_unslash($_POST['FluxToPosts_status']) !==  null &&  wp_unslash($_POST['FluxToPosts_category']) !== null) {
             $data = [
             'feed' => sanitize_text_field($_POST['FluxToPosts_feed']),
             'user' => sanitize_text_field($_POST['FluxToPosts_user']),
             'status' => sanitize_text_field($_POST['FluxToPosts_status']),
             'category' => sanitize_text_field($_POST['FluxToPosts_category'])
             ];
-
-            update_option('FeedToPosts_option_key', $data, 'yes');
+            if (empty($data['feed'])) {
+                delete_option('FeedToPosts_option_key');
+            }
+            update_option('FeedToPosts_option_key', $data);
         }
+
         $this->FeedToPosts_redirect();
     }
 
