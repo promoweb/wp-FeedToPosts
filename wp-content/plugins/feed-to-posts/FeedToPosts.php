@@ -41,6 +41,6 @@ function FeedToPosts_Settings()
     $notices = new FeedToPosts_Notices();
     $notices->FeedToPosts_init();
 
-    $public = new FeedToPosts_Controller($serializer, $deserializer, $notices);
+    $public = new FeedToPosts_Controller($deserializer, $notices);
     $public->FeedToPosts_Feed();
 }
