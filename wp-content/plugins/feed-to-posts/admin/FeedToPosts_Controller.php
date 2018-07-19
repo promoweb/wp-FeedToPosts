@@ -42,7 +42,7 @@ class FeedToPosts_Controller
     public function FeedToPosts_Feed()
     {
         $values = $this->deserializer->FeedToPosts_getValue('FeedToPosts_option_key');
-        if ($_POST['FeedToPosts_submit']) {
+        if (isset($_POST['FeedToPosts_submit'])) {
             if (empty($values['feed'])) {
                 FeedToPosts_notices_addError('Please provide a JSON feed');
                 return false;
