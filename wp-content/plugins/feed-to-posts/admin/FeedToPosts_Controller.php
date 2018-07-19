@@ -12,11 +12,6 @@ class FeedToPosts_Controller
     private $deserializer;
 
     /**
-     * @var FeedToPosts_Serializer
-     */
-    private $serializer;
-
-    /**
      * @var FeedToPosts_Notices
      */
     private $notices;
@@ -28,9 +23,8 @@ class FeedToPosts_Controller
      * @param $deserializer
      * @param $notices
      */
-    public function __construct($serializer, $deserializer, $notices)
+    public function __construct($deserializer, $notices)
     {
-        $this->serializer = $serializer;
         $this->deserializer = $deserializer;
         $this->notices = $notices;
     }

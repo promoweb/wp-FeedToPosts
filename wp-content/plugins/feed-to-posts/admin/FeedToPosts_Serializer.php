@@ -48,7 +48,7 @@ class FeedToPosts_Serializer
      *
      * @return boolean False if the field isn't set or the nonce value is invalid otherwise, true.
      */
-    public function FeedToPosts_hasValidNonce()
+    private function FeedToPosts_hasValidNonce()
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
@@ -71,7 +71,7 @@ class FeedToPosts_Serializer
     /**
      * Redirect to the page from which we came
      */
-    public function FeedToPosts_redirect()
+    private function FeedToPosts_redirect()
     {
         // Input var okay.
         if (! isset($_POST['_wp_http_referer'])) {
