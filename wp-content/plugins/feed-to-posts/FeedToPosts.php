@@ -31,15 +31,15 @@ add_action('plugins_loaded', 'FeedToPosts_Settings');
 function FeedToPosts_Settings()
 {
     $serializer = new FeedToPosts_Serializer();
-    $serializer->FeedToPosts_init();
+    $serializer->FeedToPosts_serializerInit();
 
     $deserializer = new FeedToPosts_Deserializer();
 
     $plugin = new FeedToPosts_Menu(new FeedToPosts_Page($deserializer));
-    $plugin->FeedToPosts_init();
+    $plugin->FeedToPosts_menuInit();
 
     $notices = new FeedToPosts_Notices();
-    $notices->FeedToPosts_init();
+    $notices->FeedToPosts_noticesInit();
 
     $public = new FeedToPosts_Controller($deserializer, $notices);
     $public->FeedToPosts_Feed();
