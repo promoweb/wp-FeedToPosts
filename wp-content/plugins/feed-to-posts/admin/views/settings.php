@@ -32,12 +32,7 @@
                     <label>What feed would you like to generate as wp posts?</label>
                     <br/>
                     <input type="text" name="FluxToPosts_feed" style="width:100%;"
-                           value="<?php
-                            $values = $this->deserializer->FeedToPosts_getValue('FeedToPosts_option_key');
-                            if (isset($values['feed'])) {
-                                echo esc_attr($values['feed']);
-                            }
-                            ?>"
+                           value=""
                     />
                 </p>
                 <p>
