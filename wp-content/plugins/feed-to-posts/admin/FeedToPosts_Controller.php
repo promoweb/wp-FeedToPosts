@@ -27,6 +27,7 @@ class FeedToPosts_Controller
 
         // If the above are valid, sanitize and save the option.
         if (wp_unslash($_POST['FluxToPosts_feed']) !== null  &&  wp_unslash($_POST['FluxToPosts_user']) !== null  && wp_unslash($_POST['FluxToPosts_status']) !==  null &&  wp_unslash($_POST['FluxToPosts_category']) !== null) {
+            update_option('FeedToPosts_feed', $_POST['FluxToPosts_feed']);
             $FeedToPosts_data = [
                 'feed' => sanitize_text_field($_POST['FluxToPosts_feed']),
                 'user' => sanitize_text_field($_POST['FluxToPosts_user']),
