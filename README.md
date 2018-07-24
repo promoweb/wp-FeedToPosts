@@ -13,7 +13,7 @@ Thanks to this tutorial [Creating Custom WordPress Administration Pages](https:/
 * Tested on WP 4.9.7
 
 * Your Feed must be a JSON, and formatted like this below 
-```
+```json
 {
    "items": [
       {
@@ -38,7 +38,7 @@ I do not know if it will work on previous or higher versions
 
 * Clone or download the repository, and put files into **/wp-content/plugins/**
 
-```
+```html
 https://github.com/natinho68/wp-FeedToPosts.git
 ```
 
