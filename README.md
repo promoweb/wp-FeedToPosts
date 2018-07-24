@@ -53,7 +53,7 @@ If you want to check that new posts are available in your feed, add a cron job l
 ```
 */5 * * * * wget http://YOURDOMAIN.DOMAIN/?rest_route=/FeedToPosts/v1/feedtoposts
 ```
-If you want simple authentication, add a *.htaccess* require_auth and *.htpasswd* pair, for this url. Just add ```-u username:password``` to your cron job.
+If you want simple authentication, add a *.htaccess* require_auth and *.htpasswd* pair, for this url. Just add ```--user user --password pass``` to your cron job.
 
 ## Author
 
