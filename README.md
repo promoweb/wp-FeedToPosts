@@ -49,6 +49,8 @@ https://github.com/natinho68/wp-FeedToPosts.git
 
 ### Automation
 
+**Please note that for automation, you must first inject posts via the form in the settings of the plugin. Once done, you are free to do automation as explained below.**
+
 If you want to check that new posts are available in your feed, add a cron job like this (here every 5 minutes) :
 ```
 */5 * * * * wget http://YOURDOMAIN.DOMAIN/?rest_route=/FeedToPosts/v1/feedtoposts
