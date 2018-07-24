@@ -47,6 +47,14 @@ https://github.com/natinho68/wp-FeedToPosts.git
 * Put a feed and click on "Generate Posts"
 * Your posts have been imported
 
+### Automation
+
+If you want to check that new posts are available in your feed, add a cron job like this (here every 5 minutes) :
+```
+*/5 * * * * wget http://YOURDOMAIN.DOMAIN/?rest_route=/FeedToPosts/v1/feedtoposts
+```
+If you want simple authentication, add a .htaccess and .htpasswd pair. Just add ```-u username:password``` to your cron job.
+
 ## Author
 
 [**Nathan MEYER**](https://github.com/natinho68)
