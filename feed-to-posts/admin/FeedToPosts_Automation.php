@@ -58,7 +58,7 @@ class FeedToPosts_Automation
                     }
                     if($countGenerated > 0){
                         if($countExists > 0){
-                            return wp_send_json_success(['last_import' => $recent_posts, 'already_exists' => $countExists], '201');
+                            return wp_send_json_success(['already_exists' => $countExists, 'last_import' => $recent_posts], '201');
                         } else {
                             return wp_send_json_success(['last_import' => $recent_posts], '201');
                         }
