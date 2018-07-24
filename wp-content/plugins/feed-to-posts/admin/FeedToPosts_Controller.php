@@ -5,8 +5,6 @@
  */
 class FeedToPosts_Controller
 {
-    private $FeedToPosts_data = [];
-
     public function FeedToPosts_controllerInit()
     {
         add_action('admin_post', array( $this, 'FeedToPosts_save' ));
@@ -26,15 +24,11 @@ class FeedToPosts_Controller
         }
 
         // If the above are valid, sanitize and save the option.
-        if (wp_unslash($_POST['FluxToPosts_feed']) !== null  &&  wp_unslash($_POST['FluxToPosts_user']) !== null  && wp_unslash($_POST['FluxToPosts_status']) !==  null &&  wp_unslash($_POST['FluxToPosts_category']) !== null) {
-            update_option('FeedToPosts_feed', $_POST['FluxToPosts_feed']);
-            $FeedToPosts_data = [
-                'feed' => sanitize_text_field($_POST['FluxToPosts_feed']),
-                'user' => sanitize_text_field($_POST['FluxToPosts_user']),
-                'status' => sanitize_text_field($_POST['FluxToPosts_status']),
-                'category' => sanitize_text_field($_POST['FluxToPosts_category'])
-            ];
-            $this->FeedToPosts_data = $FeedToPosts_data;
+        if (wp_unslash($_POST['FeedToPosts_feed']) !== null  &&  wp_unslash($_POST['FeedToPosts_user']) !== null  && wp_unslash($_POST['FeedToPosts_status']) !==  null &&  wp_unslash($_POST['FeedToPosts_category']) !== null) {
+            update_option('FeedToPosts_feed', $_POST['FeedToPosts_feed']);
+            update_option('FeedToPosts_user', $_POST['FeedToPosts_user']);
+            update_option('FeedToPosts_category', $_POST['FeedToPosts_category']);
+            update_option('FeedToPosts_status', $_POST['FeedToPosts_status']);
 
             $this->FeedToPosts_Feed();
             $this->FeedToPosts_redirect();
@@ -48,12 +42,12 @@ class FeedToPosts_Controller
      */
     public function FeedToPosts_Feed()
     {
-        if (empty($this->FeedToPosts_data['feed'])) {
+        if (empty(get_option('FeedToPosts_feed'))) {
             FeedToPosts_notices_addError('Please provide a JSON feed');
             return false;
         } else {
             // get feed and json decode
-            $FeedToPosts_getFeed = @file_get_contents($this->FeedToPosts_data['feed']);
+            $FeedToPosts_getFeed = @file_get_contents(get_option('FeedToPosts_feed'));
             if ($FeedToPosts_getFeed === false) {
                 FeedToPosts_notices_addError('Can\'t access to this feed');
                 return false;
@@ -72,10 +66,10 @@ class FeedToPosts_Controller
 
                     $FeedToPosts_postIt['post_title'] = $FeedToPosts_item['title'];
                     $FeedToPosts_postIt['post_content'] = $FeedToPosts_item['description'];
-                    $FeedToPosts_postIt['post_status'] = $this->FeedToPosts_data['status'];
-                    $FeedToPosts_postIt['post_author'] = intval($this->FeedToPosts_data['user']);
+                    $FeedToPosts_postIt['post_status'] = get_option('FeedToPosts_status');
+                    $FeedToPosts_postIt['post_author'] = intval(get_option('FeedToPosts_user'));
                     $FeedToPosts_postIt['post_date_gmt'] = $FeedToPosts_convertedDate;
-                    $FeedToPosts_postIt['post_category'] = [intval($this->FeedToPosts_data['category'])];
+                    $FeedToPosts_postIt['post_category'] = [intval(get_option('FeedToPosts_category'))];
 
                     if (post_exists($FeedToPosts_item['title'])) {
                         FeedToPosts_notices_addError('Posts already exists (Empty the trash if already delete it) !');
@@ -101,7 +95,7 @@ class FeedToPosts_Controller
     {
 
         // If the field isn't even in the $_POST, then it's invalid.
-        if (! isset($_POST['FeedToPosts_nonce']) && ! isset($_POST['FluxToPosts_user']) && ! isset($_POST['FluxToPosts_status']) && ! isset($_POST['FluxToPosts_category'])) { // Input var okay.
+        if (! isset($_POST['FeedToPosts_nonce']) && ! isset($_POST['FeedToPosts_user']) && ! isset($_POST['FeedToPosts_status']) && ! isset($_POST['FeedToPosts_category'])) { // Input var okay.
             return false;
         }
 

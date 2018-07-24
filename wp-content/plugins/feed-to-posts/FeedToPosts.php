@@ -24,12 +24,17 @@ include_once(ABSPATH . 'wp-admin/includes/post.php');
 
 add_action('plugins_loaded', 'FeedToPosts_Settings');
 
+
+
 /**
  * Starts the plugin.
  *
  */
 function FeedToPosts_Settings()
 {
+    $cronJob = new FeedToPosts_Automation();
+    $cronJob->FeedToPosts_automationInit();
+
     $controller = new FeedToPosts_Controller();
     $controller->FeedToPosts_controllerInit();
 

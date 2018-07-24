@@ -31,13 +31,13 @@
                 <p>
                     <label>What feed would you like to generate as wp posts?</label>
                     <br/>
-                    <input type="text" name="FluxToPosts_feed" style="width:100%;"
+                    <input type="text" name="FeedToPosts_feed" style="width:100%;"
                            value="<?php echo get_option('FeedToPosts_feed') ?>"
                     />
                 </p>
                 <p>
                     <label>Author</label>
-                    <select id="FluxToPosts_user" name="FluxToPosts_user">
+                    <select id="FeedToPosts_user" name="FeedToPosts_user">
                         <?php
 
                         foreach (get_users() as $user) {
@@ -48,7 +48,7 @@
                 </p>
                 <p>
                     <label>Post status</label>
-                    <select id="FluxToPosts_status" name="FluxToPosts_status">
+                    <select id="FeedToPosts_status" name="FeedToPosts_status">
                         <option value="publish">Publish</option>
                         <option value="future">Future</option>
                         <option value="draft">Draft</option>
@@ -59,7 +59,7 @@
                 </p>
                 <p>
                     <label>Category</label>
-                    <select id="FluxToPosts_category" name="FluxToPosts_category">
+                    <select id="FeedToPosts_category" name="FeedToPosts_category">
                         <?php
 
                         foreach (get_categories(array('hide_empty' => 0)) as $category) {
