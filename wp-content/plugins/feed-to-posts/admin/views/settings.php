@@ -32,7 +32,7 @@
                     <label>What feed would you like to generate as wp posts?</label>
                     <br/>
                     <input type="text" name="FluxToPosts_feed" style="width:100%;"
-                           value=""
+                           value="<?php echo get_option('FeedToPosts_feed') ?>"
                     />
                 </p>
                 <p>
