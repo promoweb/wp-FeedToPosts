@@ -49,7 +49,7 @@ class FeedToPosts_Automation
                 }
                 $args = ['numberposts' => 5, 'order' => 'DESC'];
                 $recent_posts = wp_get_recent_posts($args);
-                return wp_send_json_success(['last_import' => $recent_posts], '202');
+                return wp_send_json_success(['last_import' => $recent_posts], '201');
             }
         }
         }
