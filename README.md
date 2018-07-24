@@ -1,5 +1,7 @@
 # JSON Feed wp-posts importer
 
+A posts importer based on a JSON stream. <br>
+Posts generation by form and handle an automation system. <br><br>
 Thanks to this tutorial [Creating Custom WordPress Administration Pages](https://code.tutsplus.com/tutorials/creating-custom-admin-pages-in-wordpress-1--cms-26829) and to [Easy WordPress Admin Notifications](https://github.com/JolekPress/Easy-WordPress-Admin-Notifications), which helped me a lot for the creation of this plugin
 
 ## Getting Started
