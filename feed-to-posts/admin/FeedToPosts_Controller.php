@@ -54,6 +54,8 @@ class FeedToPosts_Controller
             } else {
                 $FeedToPosts_json = json_decode($FeedToPosts_getFeed, true);
                 $FeedToPosts_postIt = [];
+                $countExists = 0;
+                $countGenerated = 0;
                 // parse posts items
                 foreach ($FeedToPosts_json['items'] as $FeedToPosts_item) {
                     if (!array_key_exists('title', $FeedToPosts_item) || !array_key_exists('pubdate', $FeedToPosts_item) || !array_key_exists('description', $FeedToPosts_item)) {
@@ -72,13 +74,19 @@ class FeedToPosts_Controller
                     $FeedToPosts_postIt['post_category'] = [intval(get_option('FeedToPosts_category'))];
 
                     if (post_exists($FeedToPosts_item['title'])) {
-                        FeedToPosts_notices_addError('Posts already exists (Empty the trash if already delete it) !');
-                        return false;
+                        $countExists++;
                     } else {
                         wp_insert_post($FeedToPosts_postIt);
+                        $countGenerated++;
                     }
                 }
-                FeedToPosts_notices_addSuccess('Post generated');
+                if($countExists > 0)
+                {
+                    FeedToPosts_notices_addWarning($countExists . ' posts already exists (Empty the trash if already delete it) !');
+                }
+                if($countGenerated > 0){
+                    FeedToPosts_notices_addSuccess($countGenerated . ' posts generated');
+                }
             }
         }
     }

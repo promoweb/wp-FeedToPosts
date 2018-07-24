@@ -9,8 +9,8 @@ class FeedToPosts_Notices
         add_action('admin_notices', [__CLASS__, 'FeedToPosts_displayNotices']);
     }
     /**
-    * Checks for any stored notices and outputs them.
-    */
+     * Checks for any stored notices and outputs them.
+     */
     public static function FeedToPosts_displayNotices()
     {
         $notices = self::FeedToPosts_getNotices();
@@ -31,20 +31,20 @@ class FeedToPosts_Notices
         self::FeedToPosts_updateNotices([]);
     }
     /**
-    * Retrieves any stored notices.
-    *
-    * @return array|void
-    */
+     * Retrieves any stored notices.
+     *
+     * @return array|void
+     */
     private static function FeedToPosts_getNotices()
     {
         $notices = get_option(self::NOTICES_OPTION_KEY, []);
         return $notices;
     }
     /**
-    * Update the stored notices in the options table with a new array.
-    *
-    * @param array $notices
-    */
+     * Update the stored notices in the options table with a new array.
+     *
+     * @param array $notices
+     */
     private static function FeedToPosts_updateNotices(array $notices)
     {
         update_option(self::NOTICES_OPTION_KEY, $notices);
@@ -63,13 +63,23 @@ class FeedToPosts_Notices
         self::FeedToPosts_updateNotices($notices);
     }
     /**
-    * Success notice
-    *
-    * @param $message
-    */
+     * Success notice
+     *
+     * @param $message
+     */
     public static function FeedToPosts_addSuccess($message)
     {
         self::FeedToPosts_addNotice($message, 'success');
+    }
+
+    /**
+     * warning notice
+     *
+     * @param $message
+     */
+    public static function FeedToPosts_addWarning($message)
+    {
+        self::FeedToPosts_addNotice($message, 'warning');
     }
 
     /**
@@ -83,6 +93,12 @@ class FeedToPosts_Notices
     }
 }
 FeedToPosts_Notices::FeedToPosts_noticesInit();
+
+function FeedToPosts_notices_addWarning($message)
+{
+    FeedToPosts_Notices::FeedToPosts_addWarning($message);
+}
+
 function FeedToPosts_notices_addSuccess($message)
 {
     FeedToPosts_Notices::FeedToPosts_addSuccess($message);
