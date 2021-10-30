@@ -2,7 +2,7 @@
 /*
 Plugin Name: Feed to posts
 Description: Create posts automatically from JSON feed
-Version: 1.0
+Version: 1.1
 Author: Nathan MEYER
 Author URI: https://github.com/natinho68
 License: GNU GENERAL PUBLIC LICENSE v2
@@ -23,7 +23,6 @@ foreach (glob(plugin_dir_path(__FILE__) . 'admin/*.php') as $file) {
 include_once(ABSPATH . 'wp-admin/includes/post.php');
 
 add_action('plugins_loaded', 'FeedToPosts_Settings');
-
 
 
 /**
